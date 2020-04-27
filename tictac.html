@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="tictac.css">
+</head>
+<body>
+    <table>
+     <tr>
+         <td class="same" id="one">x</td>
+         <td class="same" id="two">x</td>
+         <td class="same" id="three">x</td>
+     </tr>
+     <tr>
+        <td class="same" id="four">x</td>
+        <td class="same" id="five">x</td>
+        <td class="same" id="six">x</td>
+    </tr>
+    <tr>
+        <td class="same" id="seven">x</td>
+        <td class="same" id="eight">x</td>
+        <td class="same" id="nine">x</td>
+    </tr>
+    </table>
+    <div class="reset">reset</div>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+  $(document).ready(function(){
+      var x="x";
+      var o="o";
+      var turn=1;
+     var one=$('#one');
+     var two=$('#two');
+     var three=$('#three');
+     var four=$('#four');
+     var five=$('#five');
+     var six=$('#six');
+     var seven=$('#seven');
+     var eight=$('#eight');
+     var nine=$('#nine');
+     var reset=$('.reset');
+     $('.same').on('click',function(){
+         if($(this).hasClass('o')||$(this).hasClass('x')){
+             alert('filled');
+         }
+         else if(turn==9){
+             alert("game draw")
+         }
+        //  mtlb even numb hain
+         else if(turn%2==0){
+            turn++;
+            $(this).text(o)
+            $(this).addClass('o');
+            if(one.hasClass('o')&& two.hasClass('o')&& three.hasClass('o')||
+            four.hasClass('o')&& five.hasClass('o')&& six.hasClass('o')||
+            seven.hasClass('o')&& eight.hasClass('o')&&nine.hasClass('o')||
+            one.hasClass('o')&& five.hasClass('o')&& nine.hasClass('o')||
+            three.hasClass('o')&& five.hasClass('o')&& seven.hasClass('o')||
+            one.hasClass('o')&& four.hasClass('o')&& seven.hasClass('o')||
+            two.hasClass('o')&&five.hasClass('o')&&eight.hasClass('o')||
+            three.hasClass('o')&& six.hasClass('o')&&nine.hasClass('o')){
+                alert("winner is O")
+            }
+         }
+        //  ab odd num r x win kare ga 
+         else if(turn%2 !==0){
+             turn++;
+             $(this).text(x);
+             $(this).addClass('x');
+             if(one.hasClass('x')&& two.hasClass('x')&& three.hasClass('x')||
+            four.hasClass('x')&& five.hasClass('x')&& six.hasClass('x')||
+            seven.hasClass('x')&& eight.hasClass('x')&&nine.hasClass('x')||
+            one.hasClass('x')&& five.hasClass('x')&& nine.hasClass('x')||
+            three.hasClass('x')&& five.hasClass('x')&& seven.hasClass('x')||
+            one.hasClass('x')&& four.hasClass('x')&& seven.hasClass('x')||
+            two.hasClass('x')&&five.hasClass('x')&&eight.hasClass('x')||
+            three.hasClass('x')&& six.hasClass('x')&&nine.hasClass('x')){
+                alert("winner is x")
+            }
+}
+})
+reset.on('click',function(){
+    $('.same').removeClass('o');
+        $('.same').removeClass('x');
+        $('.same').text('+');
+        turn=1;
+})
+     
+  })
+
+
+</script>
+</body>
+
+</html>
